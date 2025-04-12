@@ -1,1 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JLUV PC - Custom PC Building in New Salisbury, Indiana</title>
+    <style>
+        :root {
+            --primary: #0056b3;
+            --secondary: #00b3a4;
+            --dark: #1a1a1a;
+            --light: #f8f9fa;
+            --accent: #ff4081;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .hero {
+            height: 80vh;
+            background: url('/api/placeholder/1200/800') center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1;
+        }
+        
+        .hero-content {
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 1rem;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        .slogan {
+            font-style: italic;
+            font-weight: bold;
+            color: var(--accent);
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #e03070;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        section {
+            padding: 5rem 2rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .section-title p {
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .services {
+            background-color: white;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .service-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .service-card:hover .service-img img {
+            transform: scale(1.1);
+        }
+        
+        .service-content {
+            padding: 1.5rem;
+        }
+        
+        .service-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .about {
+            background-color: var(--light);
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .about-img {
+            flex: 1;
+        }
+        
+        .about-img img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .chat-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 350px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+            overflow: hidden;
+            z-index: 1000;
+            display: none;
+        }
+        
+        .chat-header {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .chat-body {
+            height: 300px;
+            padding: 1rem;
+            overflow-y: auto;
+        }
+        
+        .message {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 8px;
+            max-width: 70%;
+        }
+        
+        .bot {
+            background-color: #f1f1f1;
+            align-self: flex-start;
+        }
+        
+        .user {
+            background-color: var(--primary);
+            color: white;
+            align-self: flex-end;
+            margin-left: auto;
+        }
+        
+        .chat-footer {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid #eee;
+        }
+        
+        .chat-footer input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+        
+        .chat-footer button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .chat-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            cursor: pointer;
+            z-index: 999;
+        }
+        
+        .testimonials {
+            background-color: white;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .testimonial-card {
+            background-color: var(--light);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        .contact {
+            background-color: var(--light);
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: left;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-section a:hover {
+            color: var(--accent);
+        }
+        
+        .footer-bottom {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #444;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .chat-container {
+                width: 85%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">JLUV PC</div>
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Custom PC Building in New Salisbury, Indiana</h1>
+            <p class="slogan">"Keep it clean, come to me."</p>
+            <p>Professional custom PC building services for gamers, professionals, and enthusiasts.</p>
+            <a href="#contact" class="btn">Get Your Custom PC</a>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="section-title">
+            <h2>Our Services</h2>
+            <p>We offer a range of professional PC building and maintenance services.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-img">
+                    <img src="/api/placeholder/400/300" alt="Custom PC Building">
+                </div>
+                <div class="service-content">
+                    <h3>Custom PC Building</h3>
+                    <p>Get a PC built to your exact specifications. Whether you need a gaming powerhouse, a workstation, or a budget-friendly build, we've got you covered.</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="service-img">
+                    <img src="/api/placeholder/400/300" alt="PC Upgrades">
+                </div>
+                <div class="service-content">
+                    <h3>Upgrades & Optimization</h3>
+                    <p>Bring new life to your existing PC with hardware upgrades, performance optimization, and custom cooling solutions.</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="service-img">
+                    <img src="/api/placeholder/400/300" alt="PC Maintenance">
+                </div>
+                <div class="service-content">
+                    <h3>Maintenance & Cleaning</h3>
+                    <p>Regular maintenance keeps your PC running at its best. We provide professional cleaning, cable management, and system checks.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="about-content">
+            <div class="about-img">
+                <img src="/api/placeholder/600/400" alt="About JLUV PC">
+            </div>
+            <div class="about-text">
+                <h3>About JLUV PC</h3>
+                <p>Founded by Jordan in New Salisbury, Indiana, JLUV PC was born from a passion for technology and a desire to provide top-quality PC building services to our community.</p>
+                <p>With years of experience in PC building and maintenance, we take pride in delivering clean, reliable, and high-performance computer systems tailored to our clients' needs.</p>
+                <p>At JLUV PC, we believe that a well-built PC should be both powerful and pristine – that's why our slogan is "Keep it clean, come to me."</p>
+                <a href="#contact" class="btn" style="margin-top: 1rem;">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials" id="testimonials">
+        <div class="section-title">
+            <h2>What Our Clients Say</h2>
+            <p>Don't just take our word for it – hear from our satisfied customers!</p>
+        </div>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <p class="testimonial-text">"Jordan built me a gaming PC that exceeded all my expectations. The cable management is impeccable, and the performance is outstanding. Highly recommended!"</p>
+                <p class="testimonial-author">- Mike T.</p>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-text">"As a graphic designer, I needed a workstation that could handle heavy loads. JLUV PC delivered a perfect solution within my budget. The attention to detail is amazing."</p>
+                <p class="testimonial-author">- Sarah K.</p>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-text">"The maintenance service from JLUV PC gave my old computer a new lease on life. It runs cooler, faster, and cleaner than ever before."</p>
+                <p class="testimonial-author">- David R.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="section-title">
+            <h2>Get In Touch</h2>
+            <p>Ready to get your dream PC? Contact us today for a free consultation.</p>
+        </div>
+        <div class="contact-form">
+            <form>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" placeholder="Your Name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Your Email">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" placeholder="Your Phone Number">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" rows="5" placeholder="Tell us about the PC you want"></textarea>
+                </div>
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <div class="chat-button" id="chatButton">
+        <i>AI</i>
+    </div>
+
+    <div class="chat-container" id="chatContainer">
+        <div class="chat-header">
+            <h3>JLUV PC Assistant</h3>
+            <span id="closeChat" style="cursor: pointer;">×</span>
+        </div>
+        <div class="chat-body" id="chatBody">
+            <div class="message bot">
+                Hello! I'm the JLUV PC AI assistant. How can I help you with your custom PC needs today?
+            </div>
+        </div>
+        <div class="chat-footer">
+            <input type="text" id="chatInput" placeholder="Type your message...">
+            <button id="sendMessage">Send</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>JLUV PC</h3>
+                <p>Custom PC building services in New Salisbury, Indiana. Focused on quality, performance, and cleanliness.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <ul>
+                    <li>New Salisbury, Indiana</li>
+                    <li>Email: info@jluvpc.com</li>
+                    <li>Phone: (812) 555-1234</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 JLUV PC. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Chat functionality
+        const chatButton = document.getElementById('chatButton');
+        const chatContainer = document.getElementById('chatContainer');
+        const closeChat = document.getElementById('closeChat');
+        const chatInput = document.getElementById('chatInput');
+        const sendMessage = document.getElementById('sendMessage');
+        const chatBody = document.getElementById('chatBody');
+        
+        // AI Assistant responses
+        const aiResponses = {
+            "hello": "Hello! How can I help you with your PC needs today?",
+            "hi": "Hi there! How can I assist you with your custom PC?",
+            "custom pc": "At JLUV PC, we specialize in building custom PCs tailored to your needs. Whether you need a gaming rig, workstation, or general-purpose computer, we can help. Would you like to share your requirements?",
+            "gaming pc": "Gaming PCs are our specialty! We can build you a system that handles the latest games smoothly. What's your budget range and what games do you mainly play?",
+            "price": "Our custom PC prices start at $800 for entry-level builds and can go up to $3000+ for high-end systems. We work with you to find the perfect balance of performance and budget. Do you have a specific price range in mind?",
+            "contact": "You can reach Jordan at info@jluvpc.com or call (812) 555-1234. Alternatively, fill out the contact form on our website and we'll get back to you within 24 hours.",
+            "location": "We're based in New Salisbury, Indiana. We offer local pickup and delivery options for customers in the area.",
+            "warranty": "All our custom PCs come with a 1-year warranty on parts and labor. We also offer extended warranty options if you'd like additional peace of mind.",
+            "maintenance": "We offer professional PC cleaning and maintenance services starting at $75. This includes dust removal, thermal paste replacement, software optimization, and performance testing.",
+            "cooling": "We offer both air cooling and liquid cooling solutions. Liquid cooling provides better thermal performance and aesthetics but comes at a higher price point. Air cooling is more affordable and still very effective for most builds.",
+            "parts": "We source parts from reputable suppliers and can work with all major brands including AMD, Intel, NVIDIA, ASUS, MSI, Gigabyte, Corsair, and many more.",
+            "build time": "Most custom PC builds take 3-5 business days to complete once all parts are in stock. For urgent requests, we also offer expedited building services."
+        };
+        
+        // Open and close chat
+        chatButton.addEventListener('click', () => {
+            chatContainer.style.display = 'block';
+            chatButton.style.display = 'none';
+        });
+        
+        closeChat.addEventListener('click', () => {
+            chatContainer.style.display = 'none';
+            chatButton.style.display = 'flex';
+        });
+        
+        // Send message
+        function sendChatMessage() {
+            const message = chatInput.value.trim();
+            if (message) {
+                // Add user message
+                addMessage(message, 'user');
+                chatInput.value = '';
+                
+                // AI response
+                setTimeout(() => {
+                    let response = "I'm not sure about that. Please contact us directly for more information, or ask me about our PC building services, pricing, or maintenance options.";
+                    
+                    // Check for keywords in message
+                    for (const [keyword, reply] of Object.entries(aiResponses)) {
+                        if (message.toLowerCase().includes(keyword)) {
+                            response = reply;
+                            break;
+                        }
+                    }
+                    
+                    addMessage(response, 'bot');
+                }, 500);
+            }
+        }
+        
+        sendMessage.addEventListener('click', sendChatMessage);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendChatMessage();
+            }
+        });
+        
+        function addMessage(text, type) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message', type);
+            messageDiv.textContent = text;
+            chatBody.appendChild(messageDiv);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+        
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
